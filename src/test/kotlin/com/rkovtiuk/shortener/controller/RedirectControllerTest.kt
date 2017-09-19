@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.springframework.web.context.WebApplicationContext
 
@@ -62,7 +61,7 @@ class RedirectControllerTest{
     @Test fun controllerMustRedirectUsWhenRequestIsSuccessful() {
         mockMvc.perform(get("/$PATH"))
                 .andExpect(status().`is`(REDIRECT_STATUS))
-                .andExpect(status().`is`(NOT_FOUND))
+                .andExpect(header().string(HEADER_NAME, HEADER_VALUE))
     }
 
     @Test fun controllerMustReturn404IfBadKey() {
