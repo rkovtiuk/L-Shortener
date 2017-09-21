@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<dataset>
+    <links id="100500" text="http://www.rkovtiuk.com"/>
+    <links id="100501" text="http://www.google.com"/>
+    <links id="100502" text="http://www.yahoo.com"/>
+    <links id="100503" text="http://www.oracle.com"/>
+</dataset>

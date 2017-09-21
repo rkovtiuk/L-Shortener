@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations
  * for shortener in version com.rkovtiuk.shorter.service
  * under MIT license
  */
+
 class DefaultKeyMapperServiceTest {
 
     @InjectMocks val service: KeyMapperService = DefaultKeyMapperService()

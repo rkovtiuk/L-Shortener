@@ -39,14 +39,6 @@ class RedirectControllerTest{
     @InjectMocks
     lateinit var controller: RedirectController
 
-
-    private val PATH = "aAbBcCdD"
-    private val REDIRECT_STATUS: Int = 302
-    private val HEADER_NAME = "Location"
-    private val HEADER_VALUE = "http://www.eveonline.com"
-    private val BAD_PATH = "/the_bad_path"
-    private val NOT_FOUND = 404
-
     @Before
     fun init() {
         MockitoAnnotations.initMocks(this)
@@ -67,6 +59,15 @@ class RedirectControllerTest{
     @Test fun controllerMustReturn404IfBadKey() {
         mockMvc.perform(get("/$BAD_PATH"    ))
                 .andExpect(status().`is`(NOT_FOUND))
+    }
+
+    companion object {
+        private val PATH = "aAbBcCdD"
+        private val REDIRECT_STATUS: Int = 302
+        private val HEADER_NAME = "Location"
+        private val HEADER_VALUE = "http://www.rkovtiuk.com"
+        private val BAD_PATH = "/the_bad_path"
+        private val NOT_FOUND = 404
     }
 
 }
