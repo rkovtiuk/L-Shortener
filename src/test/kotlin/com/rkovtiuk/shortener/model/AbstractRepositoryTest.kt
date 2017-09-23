@@ -5,6 +5,7 @@ import com.rkovtiuk.shortener.ShortenerApplication
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.TestExecutionListeners
+import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * under MIT license
  */
 
+@TestPropertySource(locations = arrayOf("classpath:repositories-test.properties"))
 @TestExecutionListeners(DbUnitTestExecutionListener::class)
 @SpringBootTest(classes = arrayOf(ShortenerApplication::class))
 @DirtiesContext
