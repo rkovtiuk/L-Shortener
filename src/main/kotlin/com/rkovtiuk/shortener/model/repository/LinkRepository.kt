@@ -10,6 +10,7 @@ import java.util.*
  * under MIT license
  */
 
+@org.springframework.stereotype.Repository
 interface LinkRepository : Repository<Link, Long> {
     fun findOne(id: Long?): Optional<Link>
     fun save(link: Link): Link

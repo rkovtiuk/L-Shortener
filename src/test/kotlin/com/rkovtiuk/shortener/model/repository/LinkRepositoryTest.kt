@@ -3,6 +3,7 @@ package com.rkovtiuk.shortener.model.repository
 import com.github.springtestdbunit.annotation.DatabaseOperation
 import com.github.springtestdbunit.annotation.DatabaseSetup
 import com.github.springtestdbunit.annotation.DatabaseTearDown
+import com.rkovtiuk.shortener.model.AbstractRepositoryTest
 import com.rkovtiuk.shortener.model.entity.Link
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,11 +19,12 @@ import org.hamcrest.MatcherAssert.assertThat
 
 @DatabaseSetup(LinkRepositoryTest.DATASET)
 @DatabaseTearDown(type = DatabaseOperation.DELETE_ALL, value = LinkRepositoryTest.DATASET)
-class LinkRepositoryTest {
+class LinkRepositoryTest : AbstractRepositoryTest() {
 
-    @Autowired lateinit var repository: LinkRepository
+    @Autowired
+    lateinit var repository: LinkRepository
 
-            @Test
+    @Test
     fun findOneExisting() {
         val got: Optional<Link> = repository.findOne(LINK_1_ID)
         assertThat(got.isPresent, equalTo(true))
@@ -38,7 +40,7 @@ class LinkRepositoryTest {
 
     @Test
     fun saveNew() {
-        val toBeSaved: Link = Link(LINK_TBS_TEXT)
+        val toBeSaved = Link(LINK_TBS_TEXT)
         val got: Link = repository.save(toBeSaved)
         val list: List<Link> = repository.findAll()
 

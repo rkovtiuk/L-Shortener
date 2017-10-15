@@ -14,13 +14,15 @@ import javax.servlet.http.HttpServletResponse
  */
 
 @Controller
-@RequestMapping("{key}")
 class RedirectController {
 
     @Autowired
     lateinit var keyMapperService: KeyMapperService
 
-    @RequestMapping()
+    @RequestMapping("/")
+    fun home() = "home"
+
+    @RequestMapping("{key}")
     fun redirect(@PathVariable("key") key: String, response: HttpServletResponse){
         val result = keyMapperService.getLink(key)
         when (result) {

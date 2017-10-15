@@ -59,11 +59,23 @@ class AddControllerTest {
 
     @Test
     fun whenUserAddLinkHeTakesAKey() {
-        mockMvc.perform(MockMvcRequestBuilders.post("/add")
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jacksonObjectMapper().writeValueAsString(AddController.AddRequest(LINK))))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.key", Matchers.equalTo(KEY)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.link", Matchers.equalTo(LINK)))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.key", Matchers.equalTo(KEY)))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.link", Matchers.equalTo(LINK)))
+    }
+
+    @Test
+    fun whenUserAddLinkByFormHeTakesAWebPage() {
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/addhtml")
+                .param("link", LINK)
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(KEY)))
+            .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(LINK)))
     }
 
 
