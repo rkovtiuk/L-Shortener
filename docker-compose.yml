@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=12345
+    restart: always
+  shortener:
+    image: rkovtiuk/shortener:latest
+    restart: always
+    links:
+      - db
+    ports:
+      - "80:80"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SHORTNER_PREFIX=http://shortner.com/
+      - SERVER_PORT=80
